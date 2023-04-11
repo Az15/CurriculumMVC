@@ -1,0 +1,96 @@
+﻿@using BlogCore.Utilidades;
+@model BlogCore.Models.ViewModels.HomeVM
+
+<!--Slider-->
+
+
+
+@if (User.IsInRole(CNT.Usuario) || User.IsInRole(CNT.Admin))
+{
+    //Utilizamos este If para que los usuarios y administradores puedan ver el slider final
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    
+    
+    
+    
+    <div class="carousel-inner">
+        @{
+            int cont = 0;
+        }
+        @foreach (var item in Model.Slider)
+        {
+            //Utilizamos este Foreach para recorrer desde el modelo Sliders la lista creada.
+            var itemDinamico = cont++ == 0 ? "item active" : "item";
+            if (item.Estado == true)
+            {
+                //Mucho cuidado al setear estos items dinamicos. Recomiendo que si quiere hacerlo.
+                //Cuente con el conocimiento para respaldar el trabajo en front.
+                <div class="carousel-item @itemDinamico">
+                     <img src="@Url.Content(item.UrlImagen)" class="d-block w-100">
+                      <h2 class="text-white text-center text-bg-dark py-1"> @Html.Raw(item.Nombre)</h2>
+                </div> 
+            }       
+
+        }
+
+
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    </div>
+
+}
+
+    <!--CierreSlider-->
+
+    <!--Sliders para usuarios no logeados.-->
+
+    @if (!User.IsInRole(CNT.Usuario) && !User.IsInRole(CNT.Admin))
+  {
+    //Utilizamos este if para que los que no estan registrados vean una imagen o gif que les pida registrarse.
+
+
+
+    Boolean algo = false;
+    if (User.IsInRole(CNT.Usuario) || User.IsInRole(CNT.Admin))
+    {
+        //Utilizamos este if para esconder este carousel en caso de que el usuario se logee, seteando el valor de hidden en carousel.
+        algo = true;
+    }
+
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" hidden="@algo">
+        <div class="carousel-inner h">
+            <div class="carousel-item active">
+                <img src="/imagenes/noLogeados/Bienvenido.png" class="d-block w-100">
+            </div>
+            <div class="carousel-item">
+                <img src="/imagenes/noLogeados/quever.png" class="d-block w-100">
+            </div>
+             <div class="carousel-item">
+                <img src="/imagenes/noLogeados/gracias.png" class="d-block w-100">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Siguiente</span>
+        </button>
+    </div>
+
+  }
+
+
+
+
+
+<!--Cierre de Slider para usuarios no logeados.-->

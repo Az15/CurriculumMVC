@@ -1,0 +1,36 @@
+﻿@model BlogCore.Models.ViewModels.HomeVM
+
+<div class="row fondoTitulo mt-1">
+    <div class="col-sm-12">
+        <h1 class="text-center text-white bg-secondary py-1">Proyectos<img src="~/imagenes/noLogeados/Ruedita.png" width="90" height="45" /></h1>
+    </div>
+</div>
+
+
+
+@if (Model.ListaDeArticulos.Count() > 0)
+{
+    <hr />
+    <div class="row">
+        @foreach (var articulo in Model.ListaDeArticulos.OrderBy(o => o.Id))
+        {
+            <div class="col-4">
+                <div class="card">
+                    <img src="@articulo.UrlImagen" class="img-thumbnail" width="100%">
+                    <div class="card-body">
+                        <h5 class="text-center">@articulo.Nombre</h5>
+                        <a asp-action="Details" asp-area="Cliente" class="btn btn-success" style="border-radius:2px" asp-route-id="@articulo.Id">
+                            Mas informacion
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p>No hay Articulos</p>
+}
+
+

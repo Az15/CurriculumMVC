@@ -1,0 +1,65 @@
+﻿@model BlogCore.Models.Articulo
+@{
+    ViewData["Title"] = "Detalle Articulo";
+}
+
+<div class="container">
+    <div class="card">
+
+        <div class="card-header bg-light text-light ml-0 row container">
+            <div class="col-12 col-md-6">
+                <h4 class="text-primary">@Model.Nombre</h4>
+            </div>
+            <div class="col-12 col-md-6 text-md-right">
+                <h4 class="text-muted">Fecha: @Model.FechaCreacion</h4>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="col-12">
+             <img src="@Model.UrlImagen" class="img-thumbnail mx-auto d-block" />             
+                <p class="text-secondary"> @Html.Raw(Model.Descripcion)</p>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="row">
+                <div class="col-12 col-md-6 pb-1">
+                    <a asp-action="IndexProyect" class="btn btn-success btn-sm">Volver a la Lista</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+                      <!--Carousel-->
+
+ <!--
+                      <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner h">
+                        <div class="carousel-item active">
+                            <img src="/imagenes/DetalleProyecto/Buona1.png" class="d-block w-100">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="/imagenes/DetalleProyecto/BuonaABM2.png" class="d-block w-100">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="/imagenes/DetalleProyecto/buonaABM3.png" class="d-block w-100">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="/imagenes/DetalleProyecto/buonaABM.png" class="d-block w-100">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Anterior</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Siguiente</span>
+                    </button>
+                </div>
+
+
+   -->
